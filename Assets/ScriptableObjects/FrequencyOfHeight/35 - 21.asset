@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29361af1896c2d499e2feded5727626, type: 3}
+  m_Name: 35 - 21
+  m_EditorClassIdentifier: 
+  minHeight: 21
+  maxHeight: 36
+  numberOfType: 9
+  frequencyOfBropoutOfType: ffffffffffffffff3700000037000000370000003c000000500000005a00000064000000
+  spritesOfBlock:
+  - {fileID: 21300000, guid: a38d189523252384bac618c47fb1efab, type: 3}
+  - {fileID: 21300000, guid: 96cb9a43d69325c4e906466e34bef046, type: 3}
+  - {fileID: 21300000, guid: 6e235bb48bcacb844bb1b0c8fff15e22, type: 3}
+  - {fileID: 21300000, guid: 389fd5052a1836a4883bc03dd5dcd023, type: 3}
+  - {fileID: 21300000, guid: d2f59c5cc12f16f4f848d83281e2274f, type: 3}
+  - {fileID: 21300000, guid: 85cccbb1388c68c4494f7c5e28127975, type: 3}
+  - {fileID: 21300000, guid: 223e9ec63b2b20d4d88eef9cb7089d18, type: 3}
+  - {fileID: 21300000, guid: d5fb7a96206745a48a125e6a26cb515c, type: 3}
+  - {fileID: 21300000, guid: c73033fb394d2d04b8436c75d12cf383, type: 3}
+  blockStrength:
+  - 0.45
+  - 0.45
+  - 1.5
+  - 2.25
+  - 2.25
+  - 2.25
+  - 2.25
+  - 2.25
+  - 2.25

@@ -1,0 +1,490 @@
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.UI;
+using YG;
+
+public class Noob : MonoBehaviour
+{
+    [SerializeField]
+    private Task task;
+
+    [SerializeField]
+    private Animator animatorOfStayPickaxe;
+    [SerializeField]
+    private Animator animatorOfLeftPickaxe;
+    [SerializeField]
+    private Animator animatorOfRightPickaxe;
+
+    [SerializeField]
+    private GameObject stayPickaxe;
+    [SerializeField]
+    private GameObject leftPickaxe;
+    [SerializeField]
+    private GameObject rightPickaxe;
+
+    [SerializeField]
+    private PickaxeData pickaxeData;
+    [SerializeField]
+    private SpriteRenderer[] pickaxes;
+
+    private float restOfEnergy;
+    [SerializeField]
+    private Image ProgressBar;
+
+    private int mineingStatus;
+    private int numberOfTypeOfBrokenBlock;
+
+    private float differenceDown;
+    private float differenceRight;
+    private float differenceLeft;
+
+    private bool moveDown;
+    private bool moveRight;
+    private bool moveLeft;
+
+    [SerializeField]
+    private string[] namesOfBlocks;
+    [SerializeField]
+    private Text[] numbersOfBlocksText;
+
+    [SerializeField]
+    private GameObject loseScreen;
+    [SerializeField]
+    private GameObject vectoryScreen;
+
+    [SerializeField]
+    private GameObject lowerObject;
+    private GameObject leftObject;
+    private GameObject rightObject;
+
+    [SerializeField]
+    private float speed;
+
+    [SerializeField]
+    private float JumpHeight;
+    [SerializeField]
+    private float JumpTime;
+    private Vector3 JumpVector = new Vector3(0, 1, 0);
+    private bool TouchNow = false;
+    private bool Jump = false;
+    private float CurrentRemainingJumpTime;
+
+    [SerializeField]
+    private GameObject camera;
+    [SerializeField]
+    private GameObject lowLevelPickaxeWarning;
+    private GameObject createdWarning;
+    [SerializeField]
+    private GameObject warningParent;
+
+
+    private void OnEnable() => YandexGame.RewardVideoEvent += Rewarded;
+
+
+    private void OnDisable() => YandexGame.RewardVideoEvent -= Rewarded;
+
+
+    private void Rewarded(int id)
+    {
+        if (id == 1)
+        {
+            loseScreen.SetActive(false);
+            restOfEnergy = PlayerPrefs.GetInt("Energy");
+            ProgressBar.fillAmount = 1;
+        }
+
+    }
+
+    private void Start()
+    {
+        /*
+        PlayerPrefs.SetInt("stone", 0);
+        PlayerPrefs.SetInt("coal", 0);
+        PlayerPrefs.SetInt("copper", 0);
+        PlayerPrefs.SetInt("iron", 0);
+        PlayerPrefs.SetInt("gold", 0);
+        PlayerPrefs.SetInt("diamond", 0);
+        PlayerPrefs.SetInt("emerald", 0);
+        PlayerPrefs.SetInt("score", 0);
+        PlayerPrefs.SetInt("goalNumber", 0);
+        PlayerPrefs.SetInt("EnergyImprovement", 0);
+        PlayerPrefs.SetInt("LuckImprovement", 0);
+        PlayerPrefs.SetInt("Energy", 20);
+        PlayerPrefs.SetInt("Luck", 0);
+        PlayerPrefs.SetInt("Blocks", 0);
+        PlayerPrefs.SetInt("numberOfPickaxe", 0);
+        PlayerPrefs.SetInt("numberOfPickaxe1", 0);
+        PlayerPrefs.SetInt("numberOfPickaxe2", 0);
+        PlayerPrefs.SetInt("numberOfPickaxe3", 0);
+        PlayerPrefs.SetInt("numberOfPickaxe4", 0);
+        PlayerPrefs.SetInt("numberOfPickaxe5", 0);
+        PlayerPrefs.SetInt("IsGameCompleted", 0);
+        */
+
+
+        if (PlayerPrefs.GetInt("Energy") == 0)
+        {
+            PlayerPrefs.SetInt("Energy", 20);
+        }
+        animatorOfStayPickaxe.SetBool("rightDigging", true);
+        animatorOfRightPickaxe.SetBool("rightDigging", true);
+        animatorOfLeftPickaxe.SetBool("leftDigging", true);
+        for (int i = 0; i < 3; i++)
+        {
+            pickaxes[i].sprite = pickaxeData.pickaxeSprite[PlayerPrefs.GetInt("numberOfPickaxe")];
+        }
+
+        restOfEnergy = PlayerPrefs.GetInt("Energy");
+
+        for (int i = 2; i < 9; i++)
+        {
+            numbersOfBlocksText[i].text = PlayerPrefs.GetInt(namesOfBlocks[i]).ToString();
+        }
+        CurrentRemainingJumpTime = JumpTime;
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.name == "VictoryTrigger")
+        {
+            vectoryScreen.SetActive(true);
+        }
+        else
+        {
+            TouchNow = true;
+
+            if (other.gameObject.transform.position.y < transform.position.y)
+            {
+                differenceDown = transform.position.y - other.gameObject.transform.position.y;
+            }
+            else
+            {
+                differenceDown = -1;
+            }
+            if (other.gameObject.transform.position.x < transform.position.x)
+            {
+                differenceLeft = transform.position.x - other.gameObject.transform.position.x;
+                differenceRight = -1;
+            }
+            else
+            {
+                differenceRight = other.gameObject.transform.position.x - transform.position.x;
+                differenceLeft = -1;
+            }
+
+
+            if (Mathf.Max(differenceDown, differenceRight, differenceLeft) == differenceDown)
+            {
+                lowerObject = other.gameObject;
+            }
+            else if (Mathf.Max(differenceDown, differenceRight, differenceLeft) == differenceLeft)
+            {
+                leftObject = other.gameObject;
+            }
+            else if (Mathf.Max(differenceDown, differenceRight, differenceLeft) == differenceRight)
+            {
+                rightObject = other.gameObject;
+            }
+
+            if ((other.gameObject.name != "Block") && (PlayerPrefs.GetInt("numberOfPickaxe") != 5))
+            {
+                createdWarning = Instantiate(lowLevelPickaxeWarning, warningParent.transform.position, warningParent.transform.rotation);
+                createdWarning.transform.SetParent(warningParent.transform);
+                createdWarning.transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        rightPickaxe.SetActive(false);
+        leftPickaxe.SetActive(false);
+        TouchNow = false;
+        if (other.gameObject == lowerObject)
+        {
+            lowerObject = null;
+        }
+        else if (other.gameObject == leftObject)
+        {
+            leftObject = null;
+        }
+        else if (other.gameObject == rightObject)
+        {
+            rightObject = null;
+        }
+
+        if (other.gameObject.name != "Block")
+        {
+            Destroy(createdWarning);
+        }
+    }
+
+    public void JUMP()
+    {
+        if (TouchNow)
+        {
+            Jump = true;
+        }
+    }
+
+    public void MoveRight(bool status)
+    {
+        moveRight = status;
+    }
+
+    public void MoveLeft(bool status)
+    {
+        moveLeft = status;
+    }
+
+    public void MoveDown(bool status)
+    {
+        moveDown = status;
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown("space") && TouchNow)
+            Jump = true;
+
+        if (transform.position.x < (-137))
+        {
+            camera.transform.position = new Vector3(-137, camera.transform.position.y, -10);
+        }
+        else if (transform.position.x > (3.3f))
+        {
+            camera.transform.position = new Vector3(3.3f, camera.transform.position.y, -10);
+        }
+        else
+        {
+            camera.transform.position = new Vector3(transform.position.x, camera.transform.position.y, -10);
+        }
+
+        if (Jump)
+        {
+        if (CurrentRemainingJumpTime == 0 || CurrentRemainingJumpTime < 0)
+        {
+            CurrentRemainingJumpTime = JumpTime;
+            Jump = false;
+        }
+        else
+        {
+            CurrentRemainingJumpTime -= Time.deltaTime;
+            transform.position += Time.deltaTime * JumpVector * (JumpHeight / JumpTime);
+        }
+        }
+
+        if (moveDown)
+        {
+            if (lowerObject)
+            {
+
+                if (lowerObject.GetComponent<Block>() != null)
+                {
+                    numberOfTypeOfBrokenBlock = lowerObject.GetComponent<Block>().numberOfTypeOfThisBlock;
+                    mineingStatus = lowerObject.GetComponent<Block>().mineing(Time.deltaTime * pickaxeData.powerOfPickaxe[PlayerPrefs.GetInt("numberOfPickaxe")]);
+                    if (mineingStatus == 0)
+                    {
+                        rightPickaxe.SetActive(true);
+                        leftPickaxe.SetActive(false);
+                    }
+                    else
+                    {
+                        rightPickaxe.SetActive(false);
+                        if ((PlayerPrefs.GetFloat("Luck") * 100 > Random.Range(0, 100)))
+                        {
+                            PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 2);
+                            PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 2);
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 1);
+                            PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 1);
+                        }
+                        task.UpdateStatus();
+                        numbersOfBlocksText[numberOfTypeOfBrokenBlock].text = PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]).ToString();
+                        restOfEnergy -= 1;
+                        ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
+                        if (restOfEnergy == 0)
+                        {
+                            YandexGame.NewLeaderboardScores("numberOfMinedBlocks", PlayerPrefs.GetInt("Blocks"));
+                            loseScreen.SetActive(true);
+                            moveRight = false;
+                            moveLeft = false;
+                            moveDown = false;
+                        }
+                    }
+                }
+                else
+                {
+                    mineingStatus = lowerObject.GetComponent<Border>().mineing(Time.deltaTime * pickaxeData.powerOfPickaxe[PlayerPrefs.GetInt("numberOfPickaxe")]);
+                    if (mineingStatus == 0)
+                    {
+                        leftPickaxe.SetActive(true);
+                        rightPickaxe.SetActive(false);
+                    }
+                    else
+                    {
+                        leftPickaxe.SetActive(false);
+                        task.UpdateStatus();
+                        restOfEnergy -= 1;
+                        ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
+                        if (restOfEnergy == 0)
+                        {
+                            YandexGame.NewLeaderboardScores("numberOfMinedBlocks", PlayerPrefs.GetInt("Blocks"));
+                            loseScreen.SetActive(true);
+                            moveRight = false;
+                            moveLeft = false;
+                            moveDown = false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                transform.position = transform.position - new Vector3(0, Time.deltaTime * speed);
+            }
+        }
+
+        if (moveLeft)
+        {
+            if (leftObject)
+            {
+                if (leftObject.GetComponent<Block>() != null)
+                {
+                    numberOfTypeOfBrokenBlock = leftObject.GetComponent<Block>().numberOfTypeOfThisBlock;
+                    mineingStatus = leftObject.GetComponent<Block>().mineing(Time.deltaTime * pickaxeData.powerOfPickaxe[PlayerPrefs.GetInt("numberOfPickaxe")]);
+                    if (mineingStatus == 0)
+                    {
+                        leftPickaxe.SetActive(true);
+                        rightPickaxe.SetActive(false);
+                    }
+                    else
+                    {
+                        leftPickaxe.SetActive(false);
+                        if ((PlayerPrefs.GetFloat("Luck") * 100 > Random.Range(0, 100)))
+                        {
+                            PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 2);
+                            PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 2);
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 1);
+                            PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 1);
+                        }
+                        task.UpdateStatus();
+                        numbersOfBlocksText[numberOfTypeOfBrokenBlock].text = PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]).ToString();
+                        restOfEnergy -= 1;
+                        ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
+                        if (restOfEnergy == 0)
+                        {
+                            YandexGame.NewLeaderboardScores("numberOfMinedBlocks", PlayerPrefs.GetInt("Blocks"));
+                            loseScreen.SetActive(true);
+                            moveRight = false;
+                            moveLeft = false;
+                            moveDown = false;
+                        }
+                    }
+                }
+                else
+                {
+                    mineingStatus = leftObject.GetComponent<Border>().mineing(Time.deltaTime * pickaxeData.powerOfPickaxe[PlayerPrefs.GetInt("numberOfPickaxe")]);
+                    if (mineingStatus == 0)
+                    {
+                        leftPickaxe.SetActive(true);
+                        rightPickaxe.SetActive(false);
+                    }
+                    else
+                    {
+                        leftPickaxe.SetActive(false);
+                        task.UpdateStatus();
+                        restOfEnergy -= 1;
+                        ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
+                        if (restOfEnergy == 0)
+                        {
+                            YandexGame.NewLeaderboardScores("numberOfMinedBlocks", PlayerPrefs.GetInt("Blocks"));
+                            loseScreen.SetActive(true);
+                            moveRight = false;
+                            moveLeft = false;
+                            moveDown = false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                transform.position = transform.position - new Vector3(Time.deltaTime * speed, 0);
+            }
+        }
+
+        if (moveRight)
+        {
+            if (rightObject)
+            {
+                if (rightObject.GetComponent<Block>() != null)
+                {
+                    numberOfTypeOfBrokenBlock = rightObject.GetComponent<Block>().numberOfTypeOfThisBlock;
+                    mineingStatus = rightObject.GetComponent<Block>().mineing(Time.deltaTime * pickaxeData.powerOfPickaxe[PlayerPrefs.GetInt("numberOfPickaxe")]);
+                    if (mineingStatus == 0)
+                    {
+                        rightPickaxe.SetActive(true);
+                    }
+                    else
+                    {
+                        rightPickaxe.SetActive(false);
+                        if ((PlayerPrefs.GetFloat("Luck") * 100 > Random.Range(0, 100)))
+                        {
+                            PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 2);
+                            PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 2);
+                        }
+                        else
+                        {
+                            PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 1);
+                            PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 1);
+                        }
+                        task.UpdateStatus();
+                        numbersOfBlocksText[numberOfTypeOfBrokenBlock].text = PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]).ToString();
+                        restOfEnergy -= 1;
+                        ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
+                        if (restOfEnergy == 0)
+                        {
+                            YandexGame.NewLeaderboardScores("numberOfMinedBlocks", PlayerPrefs.GetInt("Blocks"));
+                            loseScreen.SetActive(true);
+                            moveRight = false;
+                            moveLeft = false;
+                            moveDown = false;
+                        }
+                    }
+                }
+                else
+                {
+                    mineingStatus = rightObject.GetComponent<Border>().mineing(Time.deltaTime * pickaxeData.powerOfPickaxe[PlayerPrefs.GetInt("numberOfPickaxe")]);
+                    if (mineingStatus == 0)
+                    {
+                        leftPickaxe.SetActive(true);
+                        rightPickaxe.SetActive(false);
+                    }
+                    else
+                    {
+                        leftPickaxe.SetActive(false);
+                        task.UpdateStatus();
+                        restOfEnergy -= 1;
+                        ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
+                        if (restOfEnergy == 0)
+                        {
+                            YandexGame.NewLeaderboardScores("numberOfMinedBlocks", PlayerPrefs.GetInt("Blocks"));
+                            loseScreen.SetActive(true);
+                            moveRight = false;
+                            moveLeft = false;
+                            moveDown = false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                transform.position = transform.position + new Vector3(Time.deltaTime * speed, 0);
+            }
+        }
+    }
+}
