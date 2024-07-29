@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -71,12 +70,10 @@ public class Noob : MonoBehaviour
 
     [SerializeField]
     private GameObject camera;
-    [SerializeField]
-    private GameObject lowLevelPickaxeWarning;
-    private GameObject createdWarning;
-    [SerializeField]
-    private GameObject warningParent;
 
+    [SerializeField]
+    private Text heightNumber;
+    private int height;
 
     private void OnEnable() => YandexGame.RewardVideoEvent += Rewarded;
 
@@ -97,30 +94,7 @@ public class Noob : MonoBehaviour
 
     private void Start()
     {
-        /*
-        PlayerPrefs.SetInt("stone", 0);
-        PlayerPrefs.SetInt("coal", 0);
-        PlayerPrefs.SetInt("copper", 0);
-        PlayerPrefs.SetInt("iron", 0);
-        PlayerPrefs.SetInt("gold", 0);
-        PlayerPrefs.SetInt("diamond", 0);
-        PlayerPrefs.SetInt("emerald", 0);
-        PlayerPrefs.SetInt("score", 0);
-        PlayerPrefs.SetInt("goalNumber", 0);
-        PlayerPrefs.SetInt("EnergyImprovement", 0);
-        PlayerPrefs.SetInt("LuckImprovement", 0);
-        PlayerPrefs.SetInt("Energy", 20);
-        PlayerPrefs.SetInt("Luck", 0);
-        PlayerPrefs.SetInt("Blocks", 0);
-        PlayerPrefs.SetInt("numberOfPickaxe", 0);
-        PlayerPrefs.SetInt("numberOfPickaxe1", 0);
-        PlayerPrefs.SetInt("numberOfPickaxe2", 0);
-        PlayerPrefs.SetInt("numberOfPickaxe3", 0);
-        PlayerPrefs.SetInt("numberOfPickaxe4", 0);
-        PlayerPrefs.SetInt("numberOfPickaxe5", 0);
-        PlayerPrefs.SetInt("IsGameCompleted", 0);
-        */
-
+        YandexGame.LoadProgress();
 
         if (PlayerPrefs.GetInt("Energy") == 0)
         {
@@ -185,13 +159,6 @@ public class Noob : MonoBehaviour
             {
                 rightObject = other.gameObject;
             }
-
-            if ((other.gameObject.name != "Block") && (PlayerPrefs.GetInt("numberOfPickaxe") != 5))
-            {
-                createdWarning = Instantiate(lowLevelPickaxeWarning, warningParent.transform.position, warningParent.transform.rotation);
-                createdWarning.transform.SetParent(warningParent.transform);
-                createdWarning.transform.localScale = new Vector3(1, 1, 1);
-            }
         }
     }
 
@@ -211,11 +178,6 @@ public class Noob : MonoBehaviour
         else if (other.gameObject == rightObject)
         {
             rightObject = null;
-        }
-
-        if (other.gameObject.name != "Block")
-        {
-            Destroy(createdWarning);
         }
     }
 
@@ -244,20 +206,24 @@ public class Noob : MonoBehaviour
 
     private void FixedUpdate()
     {
+        height = Mathf.RoundToInt(transform.position.y / 2.56f) * (-1) + 1;
+        if (height < 0) { height = 0; }
+        heightNumber.text = height.ToString();
+
         if (Input.GetKeyDown("space") && TouchNow)
             Jump = true;
 
         if (transform.position.x < (-137))
         {
-            camera.transform.position = new Vector3(-137, camera.transform.position.y, -10);
+            camera.transform.position = new Vector3(-137, camera.transform.position.y, -27.5f);
         }
         else if (transform.position.x > (3.3f))
         {
-            camera.transform.position = new Vector3(3.3f, camera.transform.position.y, -10);
+            camera.transform.position = new Vector3(3.3f, camera.transform.position.y, -27.5f);
         }
         else
         {
-            camera.transform.position = new Vector3(transform.position.x, camera.transform.position.y, -10);
+            camera.transform.position = new Vector3(transform.position.x, camera.transform.position.y, -27.5f);
         }
 
         if (Jump)

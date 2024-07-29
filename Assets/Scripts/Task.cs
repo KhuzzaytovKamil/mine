@@ -82,13 +82,35 @@ public class Task : MonoBehaviour
                 reward.SetActive(true);
                 descriptionOfTask.SetActive(true);
                 descriptionText.text = TasksOfGame.goalText[PlayerPrefs.GetInt("goalNumber")] + " (" + percentageOfTaskCompletion.ToString() + "%)";
-                goalText.text = "Получи награду (иконка подарка)";
+                goalText.text = GoalString();
             }
         }
         else
         {
             gameObject.SetActive(false);
         }
+    }
+
+    private string GoalString()
+    {
+        switch (YandexGame.savesData.language)
+        {
+            case "ru":
+                return "Получи награду (иконка подарка)";
+            case "en":
+                return "";
+            case "tr":
+                return "";
+            case "pt":
+                return "";
+            case "ja":
+                return "";
+            case "it":
+                return "";
+            default:
+                return "";
+        }
+
     }
 
     public void GetReward()

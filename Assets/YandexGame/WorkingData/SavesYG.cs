@@ -1,4 +1,6 @@
 ﻿
+using UnityEngine;
+
 namespace YG
 {
     [System.Serializable]
@@ -15,6 +17,26 @@ namespace YG
         public int money = 1;                       // Можно задать полям значения по умолчанию
         public string newPlayerName = "Hello!";
         public bool[] openLevels = new bool[3];
+        public int coal;
+        public int copper;
+        public int iron;
+        public int gold;
+        public int diamond;
+        public int emerald;
+        public int score;
+        public int goalNumber;
+        public int EnergyImprovement;
+        public int LuckImprovement;
+        public int Energy;
+        public int Luck;
+        public int Blocks;
+        public int numberOfPickaxe;
+        public int numberOfPickaxe1;
+        public int numberOfPickaxe2;
+        public int numberOfPickaxe3;
+        public int numberOfPickaxe4;
+        public int numberOfPickaxe5;
+        public int IsGameCompleted;
 
         // Ваши сохранения
 

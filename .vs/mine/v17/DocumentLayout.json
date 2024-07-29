@@ -1,0 +1,183 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|c:\\users\\79178\\desktop\\gamedev\\mine\\assets\\scripts\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\yandexgame\\example\\scripts\\languageexample.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\yandexgame\\example\\scripts\\languageexample.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40B79C5E-0772-B451-04BC-DAB484B5246D}|Assembly-CSharp-Editor.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\yandexgame\\scriptsyg\\language\\editor\\languageygeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40B79C5E-0772-B451-04BC-DAB484B5246D}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\yandexgame\\scriptsyg\\language\\editor\\languageygeditor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\yandexgame\\scriptsyg\\infoyg\\infoyg.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\yandexgame\\scriptsyg\\infoyg\\infoyg.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\scripts\\mine\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mine\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\scripts\\mine\\noob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mine\\noob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\yandexgame\\scriptsyg\\yandexgame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\yandexgame\\scriptsyg\\yandexgame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\yandexgame\\example\\scripts\\savertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\yandexgame\\example\\scripts\\savertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\yandexgame\\workingdata\\savesyg.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\yandexgame\\workingdata\\savesyg.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\scripts\\mine\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mine\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Task.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Task.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Task.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Task.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Task.cs",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAAwFQAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T18:29:03.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LanguageYGEditor.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\ScriptsYG\\Language\\Editor\\LanguageYGEditor.cs",
+              "RelativeDocumentMoniker": "Assets\\YandexGame\\ScriptsYG\\Language\\Editor\\LanguageYGEditor.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\ScriptsYG\\Language\\Editor\\LanguageYGEditor.cs",
+              "RelativeToolTip": "Assets\\YandexGame\\ScriptsYG\\Language\\Editor\\LanguageYGEditor.cs",
+              "ViewState": "AQIAALEAAAAAAAAAAAAowNIAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T13:35:10.537Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "InfoYG.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\ScriptsYG\\InfoYG\\InfoYG.cs",
+              "RelativeDocumentMoniker": "Assets\\YandexGame\\ScriptsYG\\InfoYG\\InfoYG.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\ScriptsYG\\InfoYG\\InfoYG.cs",
+              "RelativeToolTip": "Assets\\YandexGame\\ScriptsYG\\InfoYG\\InfoYG.cs",
+              "ViewState": "AQIAAHcAAAAAAAAAAAAnwL4AAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T13:23:37.157Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Mine\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Mine\\GameManager.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Mine\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Mine\\GameManager.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAgwCMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T12:37:59.406Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SavesYG.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\WorkingData\\SavesYG.cs",
+              "RelativeDocumentMoniker": "Assets\\YandexGame\\WorkingData\\SavesYG.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\WorkingData\\SavesYG.cs",
+              "RelativeToolTip": "Assets\\YandexGame\\WorkingData\\SavesYG.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAQwDQAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T12:29:18.47Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LanguageExample.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\Example\\Scripts\\LanguageExample.cs",
+              "RelativeDocumentMoniker": "Assets\\YandexGame\\Example\\Scripts\\LanguageExample.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\Example\\Scripts\\LanguageExample.cs",
+              "RelativeToolTip": "Assets\\YandexGame\\Example\\Scripts\\LanguageExample.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAQwBgAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T10:55:38.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SaverTest.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\Example\\Scripts\\SaverTest.cs",
+              "RelativeDocumentMoniker": "Assets\\YandexGame\\Example\\Scripts\\SaverTest.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\Example\\Scripts\\SaverTest.cs",
+              "RelativeToolTip": "Assets\\YandexGame\\Example\\Scripts\\SaverTest.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAIwBYAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T09:28:11.944Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "YandexGame.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\ScriptsYG\\YandexGame.cs",
+              "RelativeDocumentMoniker": "Assets\\YandexGame\\ScriptsYG\\YandexGame.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\ScriptsYG\\YandexGame.cs",
+              "RelativeToolTip": "Assets\\YandexGame\\ScriptsYG\\YandexGame.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD8AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-29T09:07:18.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Block.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Mine\\Block.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Mine\\Block.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Mine\\Block.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Mine\\Block.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAA1wGsAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T10:33:26.53Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Noob.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Mine\\Noob.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Mine\\Noob.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Mine\\Noob.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Mine\\Noob.cs",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAQwGAAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-28T10:23:03.174Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
