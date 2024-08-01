@@ -3,7 +3,31 @@
   "WorkspaceRootPath": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|c:\\users\\79178\\desktop\\gamedev\\mine\\assets\\scripts\\mine\\noob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\scripts\\store\\improvementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\store\\improvementcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\scripts\\scriptableobjects\\pickaxedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scriptableobjects\\pickaxedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|c:\\users\\79178\\desktop\\gamedev\\mine\\assets\\scripts\\scriptableobjects\\improvementdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scriptableobjects\\improvementdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|c:\\users\\79178\\desktop\\gamedev\\mine\\assets\\scripts\\scriptableobjects\\improvementprice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scriptableobjects\\improvementprice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\scripts\\store\\improvementsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\store\\improvementsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\scripts\\mine\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mine\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\scripts\\mine\\noob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mine\\noob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -43,8 +67,8 @@
       "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\yandexgame\\workingdata\\savesyg.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|C:\\Users\\79178\\Desktop\\GameDev\\mine\\assets\\scripts\\mine\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mine\\block.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Store\\FoodImprovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Store\\FoodImprovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,11 +78,87 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ImprovementPrice.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\ScriptableObjects\\ImprovementPrice.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ScriptableObjects\\ImprovementPrice.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\ScriptableObjects\\ImprovementPrice.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ScriptableObjects\\ImprovementPrice.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-01T17:27:04.445Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ImprovementData.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\ScriptableObjects\\ImprovementData.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ScriptableObjects\\ImprovementData.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\ScriptableObjects\\ImprovementData.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ScriptableObjects\\ImprovementData.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-01T17:25:28.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "PickaxeData.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\ScriptableObjects\\PickaxeData.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\ScriptableObjects\\PickaxeData.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\ScriptableObjects\\PickaxeData.cs",
+              "RelativeToolTip": "Assets\\Scripts\\ScriptableObjects\\PickaxeData.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-01T17:25:27.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ImprovementController.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Store\\ImprovementController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Store\\ImprovementController.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Store\\ImprovementController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Store\\ImprovementController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-01T17:13:18.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ImprovementsManager.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Store\\ImprovementsManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Store\\ImprovementsManager.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Store\\ImprovementsManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Store\\ImprovementsManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-01T17:10:28.234Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "FoodImprovement.cs",
+              "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Store\\FoodImprovement.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Store\\FoodImprovement.cs",
+              "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Store\\FoodImprovement.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Store\\FoodImprovement.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-01T16:39:15.416Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "TasksOfGame.cs",
               "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\ScriptableObjects\\TasksOfGame.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\ScriptableObjects\\TasksOfGame.cs",
@@ -70,7 +170,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "Task.cs",
               "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Task.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Task.cs",
@@ -82,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "LanguageYGEditor.cs",
               "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\ScriptsYG\\Language\\Editor\\LanguageYGEditor.cs",
               "RelativeDocumentMoniker": "Assets\\YandexGame\\ScriptsYG\\Language\\Editor\\LanguageYGEditor.cs",
@@ -94,7 +194,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "InfoYG.cs",
               "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\ScriptsYG\\InfoYG\\InfoYG.cs",
               "RelativeDocumentMoniker": "Assets\\YandexGame\\ScriptsYG\\InfoYG\\InfoYG.cs",
@@ -106,7 +206,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 12,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Mine\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Mine\\GameManager.cs",
@@ -118,7 +218,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 15,
               "Title": "SavesYG.cs",
               "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\WorkingData\\SavesYG.cs",
               "RelativeDocumentMoniker": "Assets\\YandexGame\\WorkingData\\SavesYG.cs",
@@ -130,7 +230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "LanguageExample.cs",
               "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\Example\\Scripts\\LanguageExample.cs",
               "RelativeDocumentMoniker": "Assets\\YandexGame\\Example\\Scripts\\LanguageExample.cs",
@@ -142,7 +242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 14,
               "Title": "SaverTest.cs",
               "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\Example\\Scripts\\SaverTest.cs",
               "RelativeDocumentMoniker": "Assets\\YandexGame\\Example\\Scripts\\SaverTest.cs",
@@ -154,7 +254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 13,
               "Title": "YandexGame.cs",
               "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\YandexGame\\ScriptsYG\\YandexGame.cs",
               "RelativeDocumentMoniker": "Assets\\YandexGame\\ScriptsYG\\YandexGame.cs",
@@ -166,28 +266,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 5,
               "Title": "Block.cs",
               "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Mine\\Block.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Mine\\Block.cs",
               "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Mine\\Block.cs",
               "RelativeToolTip": "Assets\\Scripts\\Mine\\Block.cs",
-              "ViewState": "AQIAACIAAAAAAAAAAAA1wGsAAAASAAAA",
+              "ViewState": "AQIAACUAAAAAAAAAAAAgwDUAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-28T10:33:26.53Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "Noob.cs",
               "DocumentMoniker": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Mine\\Noob.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Mine\\Noob.cs",
               "ToolTip": "C:\\Users\\79178\\Desktop\\GameDev\\mine\\Assets\\Scripts\\Mine\\Noob.cs",
               "RelativeToolTip": "Assets\\Scripts\\Mine\\Noob.cs",
-              "ViewState": "AQIAAFcAAAAAAAAAAAAkwGYAAAAAAAAA",
+              "ViewState": "AQIAAFgAAAAAAAAAAABgwGYAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-28T10:23:03.174Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-28T10:23:03.174Z"
             }
           ]
         }

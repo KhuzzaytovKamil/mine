@@ -12,8 +12,7 @@ public class Block : MonoBehaviour
     private float blockStrength;
     private float restBlockStrength;
 
-    [HideInInspector]
-    public int restOfObjectsOnLeft = 61;
+    public int restOfObjectsOnLeft;
     public int height;
 
     [SerializeField]
