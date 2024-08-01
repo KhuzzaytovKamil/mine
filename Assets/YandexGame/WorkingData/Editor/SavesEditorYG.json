@@ -1,0 +1,33 @@
+{
+  "idSave": 2,
+  "isFirstSession": false,
+  "language": "ru",
+  "promptDone": false,
+  "money": 1,
+  "newPlayerName": "Hello!",
+  "openLevels": [
+    false,
+    true,
+    false
+  ],
+  "coal": 8,
+  "copper": 7,
+  "iron": 7,
+  "gold": 0,
+  "diamond": 0,
+  "emerald": 0,
+  "score": 0,
+  "goalNumber": 0,
+  "EnergyImprovement": 0,
+  "LuckImprovement": 0,
+  "Energy": 20,
+  "Luck": 0,
+  "Blocks": 128,
+  "numberOfPickaxe": 0,
+  "numberOfPickaxe1": 0,
+  "numberOfPickaxe2": 0,
+  "numberOfPickaxe3": 0,
+  "numberOfPickaxe4": 0,
+  "numberOfPickaxe5": 0,
+  "IsGameCompleted": 0
+}

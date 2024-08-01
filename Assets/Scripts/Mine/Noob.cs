@@ -75,6 +75,11 @@ public class Noob : MonoBehaviour
     private Text heightNumber;
     private int height;
 
+    public bl_Joystick Joystick;
+    private bool JoystickWas;
+    [SerializeField]
+    private GameObject DesktopHelper;
+
     private void OnEnable() => YandexGame.RewardVideoEvent += Rewarded;
 
 
@@ -115,7 +120,9 @@ public class Noob : MonoBehaviour
             numbersOfBlocksText[i].text = PlayerPrefs.GetInt(namesOfBlocks[i]).ToString();
         }
         CurrentRemainingJumpTime = JumpTime;
-    }
+
+        if (SystemInfo.deviceType != DeviceType.Desktop)    {DesktopHelper.SetActive(false);}
+        }
 
     private void OnCollisionStay2D(Collision2D other)
     {
@@ -187,31 +194,110 @@ public class Noob : MonoBehaviour
         {
             Jump = true;
         }
+        DesktopHelper.SetActive(false);
     }
 
     public void MoveRight(bool status)
     {
         moveRight = status;
+        DesktopHelper.SetActive(false);
     }
 
     public void MoveLeft(bool status)
     {
         moveLeft = status;
+        DesktopHelper.SetActive(false);
     }
 
     public void MoveDown(bool status)
     {
         moveDown = status;
+        DesktopHelper.SetActive(false);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        if (JoystickWas)
+        {
+            JoystickWas = false;
+            moveRight = false;
+            moveLeft = false;
+            moveDown = false;
+        }
+        if ((Mathf.Abs(Joystick.Horizontal) > 4) || (Mathf.Abs(Joystick.Vertical) > 4))
+        {
+            DesktopHelper.SetActive(false);
+            JoystickWas = true;
+            moveRight = false;
+            moveLeft = false;
+            moveDown = false;
+            if (Mathf.Abs(Joystick.Horizontal) > Mathf.Abs(Joystick.Vertical))
+            {
+                if (Joystick.Horizontal > 4)
+                {
+                    moveRight = true;
+                }
+                else
+                {
+                    moveLeft = true;
+                }
+            }
+            else
+            {
+                if (Joystick.Vertical > 4)
+                {
+                    Jump = true;
+                }
+                else
+                {
+                    moveDown = true;
+                }
+            }
+        }
+        
+
         height = Mathf.RoundToInt(transform.position.y / 2.56f) * (-1) + 1;
         if (height < 0) { height = 0; }
         heightNumber.text = height.ToString();
 
-        if (Input.GetKeyDown("space") && TouchNow)
-            Jump = true;
+        if (SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && TouchNow)
+            {
+                Jump = true;
+                DesktopHelper.SetActive(false);
+            }
+
+            if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && (moveRight == false))
+            {
+                moveRight = true;
+                DesktopHelper.SetActive(false);
+            }
+            else if ((Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D)) && moveRight)
+            {
+                moveRight = false;
+            }
+
+            if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && (moveLeft == false))
+            {
+                moveLeft = true;
+                DesktopHelper.SetActive(false);
+            }
+            else if ((Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A)) && moveLeft)
+            {
+                moveLeft = false;
+            }
+
+            if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && (moveDown == false))
+            {
+                moveDown = true;
+                DesktopHelper.SetActive(false);
+            }
+            else if ((Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)) && moveDown)
+            {
+                moveDown = false;
+            }
+        }
 
         if (transform.position.x < (-137))
         {
@@ -267,7 +353,7 @@ public class Noob : MonoBehaviour
                             PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 1);
                             PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 1);
                         }
-                        task.UpdateStatus();
+                        //task.UpdateStatus();
                         numbersOfBlocksText[numberOfTypeOfBrokenBlock].text = PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]).ToString();
                         restOfEnergy -= 1;
                         ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
@@ -292,7 +378,7 @@ public class Noob : MonoBehaviour
                     else
                     {
                         leftPickaxe.SetActive(false);
-                        task.UpdateStatus();
+                        //task.UpdateStatus();
                         restOfEnergy -= 1;
                         ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
                         if (restOfEnergy == 0)
@@ -338,7 +424,7 @@ public class Noob : MonoBehaviour
                             PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 1);
                             PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 1);
                         }
-                        task.UpdateStatus();
+                        //task.UpdateStatus();
                         numbersOfBlocksText[numberOfTypeOfBrokenBlock].text = PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]).ToString();
                         restOfEnergy -= 1;
                         ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
@@ -363,7 +449,7 @@ public class Noob : MonoBehaviour
                     else
                     {
                         leftPickaxe.SetActive(false);
-                        task.UpdateStatus();
+                        //task.UpdateStatus();
                         restOfEnergy -= 1;
                         ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
                         if (restOfEnergy == 0)
@@ -408,7 +494,7 @@ public class Noob : MonoBehaviour
                             PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 1);
                             PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 1);
                         }
-                        task.UpdateStatus();
+                        //task.UpdateStatus();
                         numbersOfBlocksText[numberOfTypeOfBrokenBlock].text = PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]).ToString();
                         restOfEnergy -= 1;
                         ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
@@ -433,7 +519,7 @@ public class Noob : MonoBehaviour
                     else
                     {
                         leftPickaxe.SetActive(false);
-                        task.UpdateStatus();
+                        //task.UpdateStatus();
                         restOfEnergy -= 1;
                         ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
                         if (restOfEnergy == 0)
