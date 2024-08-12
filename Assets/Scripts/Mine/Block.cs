@@ -9,7 +9,7 @@ public class Block : MonoBehaviour
 
     [SerializeField]
     private SpriteRenderer blockDestructionAnim;
-    private float blockStrength;
+    public float blockStrength;
     private float restBlockStrength;
 
     public int restOfObjectsOnLeft;
@@ -31,15 +31,31 @@ public class Block : MonoBehaviour
     [SerializeField]
     private GameSettings gameSettings;
 
+    [SerializeField]
+    private AudioClip[] blockMiningAudio;
+    public GameObject blockMiningAudioSource;
+
+    [SerializeField]
+    private GameObject TNT;
+    [SerializeField]
+    private GameObject[] items;
+
     private void Start()
     {
+        restBlockStrength = blockStrength;
         gameObject.name = "Block";
 
+        
         if (startActions)
         {
             Action();
         }
         
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        blockMiningAudioSource.SetActive(false);
     }
 
     public void Action()
@@ -53,6 +69,12 @@ public class Block : MonoBehaviour
             }
         }
 
+        if (Random.Range(0, 101) <= localFrequencyOfHeight.TNTchance)
+        {
+            createdObject = Instantiate(TNT, gameObject.transform.position, gameObject.transform.rotation);
+            createdObject.transform.localScale = new Vector3(1, 1, 1);
+            Destroy(gameObject);
+        }
         selectionIntervalOfBlockType = Random.Range(0, 101);
         for (int i = 0; i < localFrequencyOfHeight.numberOfType; i++)
         {
@@ -64,6 +86,7 @@ public class Block : MonoBehaviour
         }
 
         gameObject.GetComponent<SpriteRenderer>().sprite = localFrequencyOfHeight.spritesOfBlock[numberOfTypeOfThisBlock];
+        blockMiningAudioSource.GetComponent<AudioSource>().clip = blockMiningAudio[numberOfTypeOfThisBlock];
         blockStrength = localFrequencyOfHeight.blockStrength[numberOfTypeOfThisBlock];
         restBlockStrength = blockStrength;
 
@@ -106,5 +129,12 @@ public class Block : MonoBehaviour
             Destroy(gameObject);
             return 1;
         }
+    }
+
+    public void destroyedByTNT()
+    {
+        createdObject = Instantiate(items[numberOfTypeOfThisBlock], gameObject.transform.position, gameObject.transform.rotation);
+        createdObject.transform.localScale = new Vector3(1, 1, 1);
+        Destroy(gameObject);
     }
 }

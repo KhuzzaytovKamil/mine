@@ -4,31 +4,105 @@ using YG;
 
 public class Noob : MonoBehaviour
 {
+    #region Food
+    [Header("Food")]
     [SerializeField]
-    private Task task;
+    private float restOfFoodShere = 1;
+    [SerializeField]
+    private Image FoodBar;
+    [SerializeField]
+    private Text[] foodNumbers;
+    private float restOfFood;
+    [SerializeField]
+    private GameObject RestoreFood;
+    private bool foodRestoreWasNot = true;
+    #endregion
 
+    #region Health
+    [Header("Health")]
+    [SerializeField]
+    private float restOfHealthShere = 1;
+    [SerializeField]
+    private Image HealthBar;
+    [SerializeField]
+    private Text[] healthNumbers;
+    private float restOfHealth;
+    [SerializeField]
+    private GameObject RestoreHealth;
+    private bool healthRestoreWasNot = true;
+    [SerializeField]
+    private SpriteRenderer ArmorSetImage;
+    [SerializeField]
+    private Sprite[] ArmorSetSprites;
+    #endregion
+
+    #region Pickaxe
+    [Header("Pickaxe")]
     [SerializeField]
     private Animator animatorOfStayPickaxe;
     [SerializeField]
     private Animator animatorOfLeftPickaxe;
     [SerializeField]
     private Animator animatorOfRightPickaxe;
-
     [SerializeField]
     private GameObject stayPickaxe;
     [SerializeField]
     private GameObject leftPickaxe;
     [SerializeField]
     private GameObject rightPickaxe;
-
-    [SerializeField]
-    private PickaxeData pickaxeData;
     [SerializeField]
     private SpriteRenderer[] pickaxes;
+    #endregion
 
-    private float restOfEnergy;
+    #region Blocks
+    [Header("Blocks")]
     [SerializeField]
-    private Image ProgressBar;
+    private string[] namesOfBlocks;
+    [SerializeField]
+    private Text[] numbersOfBlocksText;
+    #endregion
+
+    #region finishScreen
+    [Header("finishScreen")]
+    [SerializeField]
+    private GameObject loseScreen;
+    [SerializeField]
+    private GameObject vectoryScreen;
+    #endregion
+
+    #region interactionObject
+    [Header("interactionObject")]
+    [SerializeField]
+    private GameObject lowerObject;
+    [SerializeField]
+    private GameObject leftObject;
+    [SerializeField]
+    private GameObject rightObject;
+    #endregion
+
+    #region MovementData
+    [Header("MovementData")]
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float JumpHeight;
+    [SerializeField]
+    private float JumpTime;
+    private Vector3 JumpVector = new Vector3(0, 1, 0);
+    private bool TouchNow = false;
+    private bool Jump = false;
+    private float CurrentRemainingJumpTime;
+    private bool loseWasNot = true;
+    #endregion
+
+    #region Extras
+    [Header("Extra")]
+    [SerializeField]
+    private GameManager GameManager;
+    [SerializeField]
+    private ImprovementData[] ImprovementDatas;
+    [SerializeField]
+    private GoalController GoalController;
 
     private int mineingStatus;
     private int numberOfTypeOfBrokenBlock;
@@ -42,93 +116,124 @@ public class Noob : MonoBehaviour
     private bool moveLeft;
 
     [SerializeField]
-    private string[] namesOfBlocks;
-    [SerializeField]
-    private Text[] numbersOfBlocksText;
-
-    [SerializeField]
-    private GameObject loseScreen;
-    [SerializeField]
-    private GameObject vectoryScreen;
-
-    [SerializeField]
-    private GameObject lowerObject;
-    private GameObject leftObject;
-    private GameObject rightObject;
-
-    [SerializeField]
-    private float speed;
-
-    [SerializeField]
-    private float JumpHeight;
-    [SerializeField]
-    private float JumpTime;
-    private Vector3 JumpVector = new Vector3(0, 1, 0);
-    private bool TouchNow = false;
-    private bool Jump = false;
-    private float CurrentRemainingJumpTime;
-
-    [SerializeField]
     private GameObject camera;
-
     [SerializeField]
     private Text heightNumber;
     private int height;
 
     public bl_Joystick Joystick;
     private bool JoystickWas;
+
     [SerializeField]
-    private GameObject DesktopHelper;
+    private int numberOfAssets;
+    [SerializeField]
+    private ShowDataController[] assets;
+    private bool store = false;
+
+    [SerializeField]
+    private GameObject storeScreen;
+
+    private int screenWidthThreshold;
+    private int screenWidth;
+    #endregion
 
     private void OnEnable() => YandexGame.RewardVideoEvent += Rewarded;
 
 
     private void OnDisable() => YandexGame.RewardVideoEvent -= Rewarded;
 
-
     private void Rewarded(int id)
     {
         if (id == 1)
         {
+            loseWasNot = true;
+            foodRestoreWasNot = false;
             loseScreen.SetActive(false);
-            restOfEnergy = PlayerPrefs.GetInt("Energy");
-            ProgressBar.fillAmount = 1;
+            restOfFood = PlayerPrefs.GetInt("Food");
+            restOfFoodShere = 1;
+            FoodBar.fillAmount = 1;
+            UpdateFoodNumber();
+        }
+        else if (id == 2)
+        {
+            loseWasNot = true;
+            healthRestoreWasNot = false;
+            loseScreen.SetActive(false);
+            restOfHealth = PlayerPrefs.GetInt("Health");
+            restOfHealthShere = 1;
+            HealthBar.fillAmount = 1;
+            UpdateHealthNumber();
         }
 
     }
 
     private void Start()
     {
-        YandexGame.LoadProgress();
-
-        if (PlayerPrefs.GetInt("Energy") == 0)
+        if (PlayerPrefs.GetInt("openStoreInStart") == 1)
         {
-            PlayerPrefs.SetInt("Energy", 20);
+            StoreOpened();
+            PlayerPrefs.SetInt("openStoreInStart", 0);
+            storeScreen.SetActive(true);
         }
+
+        if (PlayerPrefs.GetInt("notStart") == 0)
+        {
+            PlayerPrefs.SetInt("GoalRequest", 1);
+            PlayerPrefs.SetInt("notStart", 1);
+        }
+        YandexGame.LoadProgress();
         animatorOfStayPickaxe.SetBool("rightDigging", true);
         animatorOfRightPickaxe.SetBool("rightDigging", true);
         animatorOfLeftPickaxe.SetBool("leftDigging", true);
         for (int i = 0; i < 3; i++)
         {
-            pickaxes[i].sprite = pickaxeData.pickaxeSprite[PlayerPrefs.GetInt("numberOfPickaxe")];
+            pickaxes[i].sprite = ImprovementDatas[0].goodSprite[PlayerPrefs.GetInt("PickaxeImprovement")];
         }
 
-        restOfEnergy = PlayerPrefs.GetInt("Energy");
+        PlayerPrefs.SetInt("Food", Mathf.RoundToInt(ImprovementDatas[1].power[PlayerPrefs.GetInt("FoodImprovement")]));
+        PlayerPrefs.SetInt("Health", Mathf.RoundToInt(ImprovementDatas[3].power[PlayerPrefs.GetInt("HealthImprovement")]));
+        restOfFood = PlayerPrefs.GetInt("Food");
+        restOfHealth = PlayerPrefs.GetInt("Health");
+        UpdateFoodNumber();
+        UpdateHealthNumber();
 
-        for (int i = 2; i < 9; i++)
+        for (int i = 2; i < 8; i++)
         {
             numbersOfBlocksText[i].text = PlayerPrefs.GetInt(namesOfBlocks[i]).ToString();
         }
         CurrentRemainingJumpTime = JumpTime;
 
-        if (SystemInfo.deviceType != DeviceType.Desktop)    {DesktopHelper.SetActive(false);}
+        UpdateAssets();
+    }
+
+    private void Awake()
+    {
+        screenWidthThreshold = 1024;
+
+        screenWidth = Screen.width;
+
+    }
+
+    public void UpdateAssets()
+    {
+        for (int i = 0; i < numberOfAssets; i++)
+        {
+            assets[i].UpdateScore();
         }
+    }
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.name == "VictoryTrigger")
+        if (other.gameObject.GetComponent<Item>() != null)
         {
-            vectoryScreen.SetActive(true);
+            if (other.gameObject.GetComponent<Item>().numberOfItem > 1)
+            {
+                PlayerPrefs.SetInt(namesOfBlocks[other.gameObject.GetComponent<Item>().numberOfItem], PlayerPrefs.GetInt(namesOfBlocks[other.gameObject.GetComponent<Item>().numberOfItem]) + 1);
+                PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 1);
+                GoalController.CheckGoal();
+                numbersOfBlocksText[other.gameObject.GetComponent<Item>().numberOfItem].text = PlayerPrefs.GetInt(namesOfBlocks[other.gameObject.GetComponent<Item>().numberOfItem]).ToString();
+            }
+            Destroy(other.gameObject);
         }
         else
         {
@@ -176,47 +281,34 @@ public class Noob : MonoBehaviour
         TouchNow = false;
         if (other.gameObject == lowerObject)
         {
+            if (lowerObject.GetComponent<Block>() != null)
+                lowerObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
             lowerObject = null;
         }
         else if (other.gameObject == leftObject)
         {
+            if (leftObject.GetComponent<Block>() != null)
+                leftObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
             leftObject = null;
         }
         else if (other.gameObject == rightObject)
         {
+            if (rightObject.GetComponent<Block>() != null)
+                rightObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
             rightObject = null;
         }
     }
 
-    public void JUMP()
-    {
-        if (TouchNow)
-        {
-            Jump = true;
-        }
-        DesktopHelper.SetActive(false);
-    }
-
-    public void MoveRight(bool status)
-    {
-        moveRight = status;
-        DesktopHelper.SetActive(false);
-    }
-
-    public void MoveLeft(bool status)
-    {
-        moveLeft = status;
-        DesktopHelper.SetActive(false);
-    }
-
-    public void MoveDown(bool status)
-    {
-        moveDown = status;
-        DesktopHelper.SetActive(false);
-    }
-
     private void Update()
     {
+        for (int i = 0; i < 3; i++)
+        {
+            pickaxes[i].sprite = ImprovementDatas[0].goodSprite[PlayerPrefs.GetInt("PickaxeImprovement")];
+        }
+
+        restOfFoodShere = restOfFood / PlayerPrefs.GetInt("Food");
+        restOfHealthShere = restOfHealth / PlayerPrefs.GetInt("Health");
+
         if (JoystickWas)
         {
             JoystickWas = false;
@@ -226,11 +318,7 @@ public class Noob : MonoBehaviour
         }
         if ((Mathf.Abs(Joystick.Horizontal) > 4) || (Mathf.Abs(Joystick.Vertical) > 4))
         {
-            DesktopHelper.SetActive(false);
             JoystickWas = true;
-            moveRight = false;
-            moveLeft = false;
-            moveDown = false;
             if (Mathf.Abs(Joystick.Horizontal) > Mathf.Abs(Joystick.Vertical))
             {
                 if (Joystick.Horizontal > 4)
@@ -260,56 +348,45 @@ public class Noob : MonoBehaviour
         if (height < 0) { height = 0; }
         heightNumber.text = height.ToString();
 
-        if (SystemInfo.deviceType == DeviceType.Desktop)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && TouchNow)
         {
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && TouchNow)
-            {
-                Jump = true;
-                DesktopHelper.SetActive(false);
-            }
-
-            if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && (moveRight == false))
-            {
-                moveRight = true;
-                DesktopHelper.SetActive(false);
-            }
-            else if ((Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D)) && moveRight)
-            {
-                moveRight = false;
-            }
-
-            if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && (moveLeft == false))
-            {
-                moveLeft = true;
-                DesktopHelper.SetActive(false);
-            }
-            else if ((Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A)) && moveLeft)
-            {
-                moveLeft = false;
-            }
-
-            if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && (moveDown == false))
-            {
-                moveDown = true;
-                DesktopHelper.SetActive(false);
-            }
-            else if ((Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)) && moveDown)
-            {
-                moveDown = false;
-            }
+            Jump = true;
         }
 
-        if (transform.position.x < (-137))
+        if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && (moveRight == false))
         {
-            camera.transform.position = new Vector3(-137, camera.transform.position.y, -27.5f);
+            moveRight = true;
         }
-        else if (transform.position.x > (3.3f))
+        else if ((Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D)) && moveRight)
         {
-            camera.transform.position = new Vector3(3.3f, camera.transform.position.y, -27.5f);
+            moveRight = false;
+        }
+
+        if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && (moveLeft == false))
+        {
+            moveLeft = true;
+        }
+        else if ((Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A)) && moveLeft)
+        {
+            moveLeft = false;
+        }
+
+        if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && (moveDown == false))
+        {
+            moveDown = true;
+        }
+        else if ((Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)) && moveDown)
+        {
+            moveDown = false;
+        }
+
+        if (store)
+        {
+            camera.transform.position = new Vector3(transform.position.x + 2, transform.position.y + 1, -5);
         }
         else
         {
-            camera.transform.position = new Vector3(transform.position.x, camera.transform.position.y, -27.5f);
+            camera.transform.position = new Vector3(transform.position.x, transform.position.y - 2.56f, -27.5f);
         }
 
         if (Jump)
@@ -330,137 +407,20 @@ public class Noob : MonoBehaviour
         {
             if (lowerObject)
             {
-
-                if (lowerObject.GetComponent<Block>() != null)
-                {
-                    numberOfTypeOfBrokenBlock = lowerObject.GetComponent<Block>().numberOfTypeOfThisBlock;
-                    mineingStatus = lowerObject.GetComponent<Block>().mineing(Time.deltaTime * pickaxeData.powerOfPickaxe[PlayerPrefs.GetInt("numberOfPickaxe")]);
-                    if (mineingStatus == 0)
-                    {
-                        rightPickaxe.SetActive(true);
-                        leftPickaxe.SetActive(false);
-                    }
-                    else
-                    {
-                        rightPickaxe.SetActive(false);
-                        if ((PlayerPrefs.GetFloat("Luck") * 100 > Random.Range(0, 100)))
-                        {
-                            PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 2);
-                            PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 2);
-                        }
-                        else
-                        {
-                            PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 1);
-                            PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 1);
-                        }
-                        //task.UpdateStatus();
-                        numbersOfBlocksText[numberOfTypeOfBrokenBlock].text = PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]).ToString();
-                        restOfEnergy -= 1;
-                        ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
-                        if (restOfEnergy == 0)
-                        {
-                            YandexGame.NewLeaderboardScores("numberOfMinedBlocks", PlayerPrefs.GetInt("Blocks"));
-                            loseScreen.SetActive(true);
-                            moveRight = false;
-                            moveLeft = false;
-                            moveDown = false;
-                        }
-                    }
-                }
-                else
-                {
-                    mineingStatus = lowerObject.GetComponent<Border>().mineing(Time.deltaTime * pickaxeData.powerOfPickaxe[PlayerPrefs.GetInt("numberOfPickaxe")]);
-                    if (mineingStatus == 0)
-                    {
-                        leftPickaxe.SetActive(true);
-                        rightPickaxe.SetActive(false);
-                    }
-                    else
-                    {
-                        leftPickaxe.SetActive(false);
-                        //task.UpdateStatus();
-                        restOfEnergy -= 1;
-                        ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
-                        if (restOfEnergy == 0)
-                        {
-                            YandexGame.NewLeaderboardScores("numberOfMinedBlocks", PlayerPrefs.GetInt("Blocks"));
-                            loseScreen.SetActive(true);
-                            moveRight = false;
-                            moveLeft = false;
-                            moveDown = false;
-                        }
-                    }
-                }
+                mineing(lowerObject, "lower");
             }
             else
             {
                 transform.position = transform.position - new Vector3(0, Time.deltaTime * speed);
             }
         }
-
-        if (moveLeft)
+        else if (moveLeft)
         {
             if (leftObject)
             {
                 if (leftObject.GetComponent<Block>() != null)
                 {
-                    numberOfTypeOfBrokenBlock = leftObject.GetComponent<Block>().numberOfTypeOfThisBlock;
-                    mineingStatus = leftObject.GetComponent<Block>().mineing(Time.deltaTime * pickaxeData.powerOfPickaxe[PlayerPrefs.GetInt("numberOfPickaxe")]);
-                    if (mineingStatus == 0)
-                    {
-                        leftPickaxe.SetActive(true);
-                        rightPickaxe.SetActive(false);
-                    }
-                    else
-                    {
-                        leftPickaxe.SetActive(false);
-                        if ((PlayerPrefs.GetFloat("Luck") * 100 > Random.Range(0, 100)))
-                        {
-                            PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 2);
-                            PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 2);
-                        }
-                        else
-                        {
-                            PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 1);
-                            PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 1);
-                        }
-                        //task.UpdateStatus();
-                        numbersOfBlocksText[numberOfTypeOfBrokenBlock].text = PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]).ToString();
-                        restOfEnergy -= 1;
-                        ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
-                        if (restOfEnergy == 0)
-                        {
-                            YandexGame.NewLeaderboardScores("numberOfMinedBlocks", PlayerPrefs.GetInt("Blocks"));
-                            loseScreen.SetActive(true);
-                            moveRight = false;
-                            moveLeft = false;
-                            moveDown = false;
-                        }
-                    }
-                }
-                else
-                {
-                    mineingStatus = leftObject.GetComponent<Border>().mineing(Time.deltaTime * pickaxeData.powerOfPickaxe[PlayerPrefs.GetInt("numberOfPickaxe")]);
-                    if (mineingStatus == 0)
-                    {
-                        leftPickaxe.SetActive(true);
-                        rightPickaxe.SetActive(false);
-                    }
-                    else
-                    {
-                        leftPickaxe.SetActive(false);
-                        //task.UpdateStatus();
-                        restOfEnergy -= 1;
-                        ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
-                        if (restOfEnergy == 0)
-                        {
-                            YandexGame.NewLeaderboardScores("numberOfMinedBlocks", PlayerPrefs.GetInt("Blocks"));
-                            loseScreen.SetActive(true);
-                            moveRight = false;
-                            moveLeft = false;
-                            moveDown = false;
-                        }
-                    }
+                    mineing(leftObject, "left");
                 }
             }
             else
@@ -468,75 +428,179 @@ public class Noob : MonoBehaviour
                 transform.position = transform.position - new Vector3(Time.deltaTime * speed, 0);
             }
         }
-
-        if (moveRight)
+        else if (moveRight)
         {
             if (rightObject)
             {
-                if (rightObject.GetComponent<Block>() != null)
-                {
-                    numberOfTypeOfBrokenBlock = rightObject.GetComponent<Block>().numberOfTypeOfThisBlock;
-                    mineingStatus = rightObject.GetComponent<Block>().mineing(Time.deltaTime * pickaxeData.powerOfPickaxe[PlayerPrefs.GetInt("numberOfPickaxe")]);
-                    if (mineingStatus == 0)
-                    {
-                        rightPickaxe.SetActive(true);
-                    }
-                    else
-                    {
-                        rightPickaxe.SetActive(false);
-                        if ((PlayerPrefs.GetFloat("Luck") * 100 > Random.Range(0, 100)))
-                        {
-                            PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 2);
-                            PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 2);
-                        }
-                        else
-                        {
-                            PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 1);
-                            PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 1);
-                        }
-                        //task.UpdateStatus();
-                        numbersOfBlocksText[numberOfTypeOfBrokenBlock].text = PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]).ToString();
-                        restOfEnergy -= 1;
-                        ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
-                        if (restOfEnergy == 0)
-                        {
-                            YandexGame.NewLeaderboardScores("numberOfMinedBlocks", PlayerPrefs.GetInt("Blocks"));
-                            loseScreen.SetActive(true);
-                            moveRight = false;
-                            moveLeft = false;
-                            moveDown = false;
-                        }
-                    }
-                }
-                else
-                {
-                    mineingStatus = rightObject.GetComponent<Border>().mineing(Time.deltaTime * pickaxeData.powerOfPickaxe[PlayerPrefs.GetInt("numberOfPickaxe")]);
-                    if (mineingStatus == 0)
-                    {
-                        leftPickaxe.SetActive(true);
-                        rightPickaxe.SetActive(false);
-                    }
-                    else
-                    {
-                        leftPickaxe.SetActive(false);
-                        //task.UpdateStatus();
-                        restOfEnergy -= 1;
-                        ProgressBar.fillAmount = restOfEnergy / PlayerPrefs.GetInt("Energy");
-                        if (restOfEnergy == 0)
-                        {
-                            YandexGame.NewLeaderboardScores("numberOfMinedBlocks", PlayerPrefs.GetInt("Blocks"));
-                            loseScreen.SetActive(true);
-                            moveRight = false;
-                            moveLeft = false;
-                            moveDown = false;
-                        }
-                    }
-                }
+                mineing(rightObject, "right");
             }
             else
             {
                 transform.position = transform.position + new Vector3(Time.deltaTime * speed, 0);
             }
         }
+        else
+        {
+            if (lowerObject != null)
+            {
+                if (lowerObject.GetComponent<Block>() != null)
+                {
+                    lowerObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
+                }
+            }
+            if (leftObject != null)
+            {
+                if (leftObject.GetComponent<Block>() != null)
+                {
+                    leftObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
+                }
+            }
+            if (rightObject != null)
+            {
+                if (rightObject.GetComponent<Block>() != null)
+                {
+                    rightObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
+                }
+            }
+        }
+    }
+
+    public void UpgradeHappened(int goodNumber)
+    {
+        if (goodNumber == 1)
+        {
+            PlayerPrefs.SetInt("Food", Mathf.RoundToInt(ImprovementDatas[1].power[PlayerPrefs.GetInt("FoodImprovement")]));
+            restOfFood = restOfFoodShere * PlayerPrefs.GetInt("Food");
+            restOfFood = Mathf.Ceil(restOfFood);
+            UpdateFoodNumber();
+        }
+        else if (goodNumber == 3)
+        {
+            PlayerPrefs.SetInt("Health", Mathf.RoundToInt(ImprovementDatas[3].power[PlayerPrefs.GetInt("HealthImprovement")]));
+            restOfHealth = restOfHealthShere * PlayerPrefs.GetInt("Health");
+            restOfHealth = Mathf.Ceil(restOfHealth);
+            UpdateHealthNumber();
+        }
+    }
+
+    private void mineing(GameObject Block, string side)
+    {
+        if (Block.GetComponent<Block>() != null)
+        {
+            Block.GetComponent<Block>().blockMiningAudioSource.SetActive(true);
+            PlayerPrefs.SetFloat("Luck", Mathf.RoundToInt(ImprovementDatas[2].power[PlayerPrefs.GetInt("LuckImprovement")]));
+            //print((100 * PlayerPrefs.GetFloat("Luck")).ToString() + " " + Random.Range(0, 100).ToString());
+            numberOfTypeOfBrokenBlock = Block.GetComponent<Block>().numberOfTypeOfThisBlock;
+            mineingStatus = Block.GetComponent<Block>().mineing(Time.deltaTime * ImprovementDatas[0].power[PlayerPrefs.GetInt("PickaxeImprovement")]);
+            if (mineingStatus == 0)
+            {
+                if (side == "right")
+                    rightPickaxe.SetActive(true);
+                else
+                    leftPickaxe.SetActive(true);
+            }
+            else
+            {
+                if (side == "right")
+                    rightPickaxe.SetActive(false);
+                else
+                    leftPickaxe.SetActive(false);
+                if ((PlayerPrefs.GetFloat("Luck") > Random.Range(0, 100)))
+                {
+                    PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 2);
+                    PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 2);
+                }
+                else
+                {
+                    PlayerPrefs.SetInt(namesOfBlocks[numberOfTypeOfBrokenBlock], PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]) + 1);
+                    PlayerPrefs.SetInt("Blocks", PlayerPrefs.GetInt("Blocks") + 1);
+                }
+                GoalController.CheckGoal();
+                numbersOfBlocksText[numberOfTypeOfBrokenBlock].text = PlayerPrefs.GetInt(namesOfBlocks[numberOfTypeOfBrokenBlock]).ToString();
+                LoseOneUnitOfFood();
+                if (restOfFood < 1)
+                {
+                    Lose();
+                    if (foodRestoreWasNot)
+                    {
+                        RestoreFood.SetActive(true);
+                    }
+                }
+            }
+        }
+    }
+
+    private void Lose()
+    {
+        loseWasNot = false;
+        RestoreFood.SetActive(false);
+        RestoreHealth.SetActive(false);
+        YandexGame.NewLeaderboardScores("numberOfMinedBlocks", PlayerPrefs.GetInt("Blocks"));
+        loseScreen.SetActive(true);
+        moveRight = false;
+        moveLeft = false;
+        moveDown = false;
+    }
+
+    #region FoodMethods
+    private void LoseOneUnitOfFood()
+    {
+        restOfFood -= 1;
+        UpdateFoodNumber();
+    }
+
+    public void UpdateFoodNumber()
+    {
+        FoodBar.fillAmount = restOfFood / PlayerPrefs.GetInt("Food");
+        for (int i = 0; i < 2; i++)
+        {
+            foodNumbers[i].text = restOfFood.ToString() + "/" + PlayerPrefs.GetInt("Food").ToString();
+        }
+    }
+    #endregion
+
+    #region HealthMethods
+    public void LoseOneUnitOfHealth(int damage)
+    {
+        restOfHealth -= damage;
+        UpdateHealthNumber();
+
+        if (restOfHealth < 1)
+        {
+            Lose();
+            if (healthRestoreWasNot)
+            {
+                RestoreHealth.SetActive(true);
+            }
+        }
+    }
+
+    public void UpdateHealthNumber()
+    {
+        HealthBar.fillAmount = restOfHealth / PlayerPrefs.GetInt("Health");
+        ArmorSetImage.sprite = ArmorSetSprites[PlayerPrefs.GetInt("HealthImprovement")];
+        for (int i = 0; i < 2; i++)
+        {
+            healthNumbers[i].text = restOfHealth.ToString() + "/" + PlayerPrefs.GetInt("Health").ToString();
+        }
+    }
+    #endregion
+
+    #region interactionStore
+    public void StoreOpened()
+    {
+        store = true;
+    }
+
+    public void StoreClosed()
+    {
+        store = false;
+    }
+    #endregion
+
+    public void Store()
+    {
+        PlayerPrefs.SetInt("openStoreInStart", 1);
+        GameManager.SwichSceneTo("Mine");
     }
 }

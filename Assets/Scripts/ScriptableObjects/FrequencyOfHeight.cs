@@ -11,4 +11,6 @@ public class FrequencyOfHeight : ScriptableObject
     public int[] frequencyOfBropoutOfType;
     public Sprite[] spritesOfBlock;
     public float[] blockStrength;
+
+    public int TNTchance;
 }

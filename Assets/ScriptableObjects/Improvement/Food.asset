@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c1446ac67932f341b0eb947af1d91d5, type: 3}
+  m_Name: Food
+  m_EditorClassIdentifier: 
+  ImprovementName: FoodImprovement
+  priceNumber: 19000000320000006400000014000000280000003c00000014000000190000001e0000000a00000014000000280000000f0000003200000000000000
+  priceType:
+  - stone
+  - stone
+  - stone
+  - ironTreasure
+  - ironTreasure
+  - ironTreasure
+  - goldTreasure
+  - goldTreasure
+  - goldTreasure
+  - diamond
+  - diamond
+  - diamond
+  - emerald
+  - emerald
+  - max
+  priceSprite:
+  - {fileID: 21300000, guid: 6e235bb48bcacb844bb1b0c8fff15e22, type: 3}
+  - {fileID: 21300000, guid: e0f0792802e3b394784c8b7c436cf860, type: 3}
+  - {fileID: 21300000, guid: c5cb4670944008e468e903f8e79b7a02, type: 3}
+  - {fileID: 21300000, guid: 6fbcfc2d7e1ec644e8f834a0b1fcee49, type: 3}
+  - {fileID: 21300000, guid: a71a1010ee6ab2b4eab240a9678fc4d3, type: 3}
+  goodSprite:
+  - {fileID: 21300000, guid: 0578eb72aed78e641a50cc1fed4410fa, type: 3}
+  - {fileID: 21300000, guid: 35f95e82a8ef91b4a9ecf669b61b707e, type: 3}
+  - {fileID: 21300000, guid: 53249249c4519be4d9b7a9407ea302d4, type: 3}
+  - {fileID: 21300000, guid: 5d2174309bfa47c4988413e8cf05c0ff, type: 3}
+  - {fileID: 21300000, guid: 011f24647175ea840b3a5f73a2207787, type: 3}
+  - {fileID: 21300000, guid: dab1f0840d03d38418578ed1b647134a, type: 3}
+  - {fileID: 21300000, guid: c16a346cb6d55a04c95d26085b2e491f, type: 3}
+  - {fileID: 21300000, guid: f0f92d4727435c94da99b06654382d6c, type: 3}
+  - {fileID: 21300000, guid: c6c55717f50004c4daafb61335f41309, type: 3}
+  - {fileID: 21300000, guid: 624b000c74695e84786bf9e9610cde18, type: 3}
+  - {fileID: 21300000, guid: 7e744aa841204284d8273d8b20192daf, type: 3}
+  - {fileID: 21300000, guid: bc1b5495dce77e94986e10f66bf0b3b2, type: 3}
+  - {fileID: 21300000, guid: d35e330666e70fa498cf0ed8d7828a8f, type: 3}
+  - {fileID: 21300000, guid: 8565c2324c4161e4183c3fbdad853a47, type: 3}
+  - {fileID: 21300000, guid: 8310d7fbdfbe2d247b7d4817d91dafdb, type: 3}
+  - {fileID: 21300000, guid: 8310d7fbdfbe2d247b7d4817d91dafdb, type: 3}
+  power:
+  - 20
+  - 25
+  - 30
+  - 35
+  - 40
+  - 45
+  - 50
+  - 55
+  - 60
+  - 65
+  - 70
+  - 75
+  - 80
+  - 85
+  - 90

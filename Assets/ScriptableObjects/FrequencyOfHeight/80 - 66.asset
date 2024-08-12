@@ -14,13 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minHeight: 66
   maxHeight: 81
-  numberOfType: 9
-  frequencyOfBropoutOfType: ffffffffffffffff3c000000410000004b0000005f000000640000000000000000000000
+  numberOfType: 8
+  frequencyOfBropoutOfType: ffffffffffffffff580000005d00000062000000640000000000000000000000
   spritesOfBlock:
   - {fileID: 21300000, guid: a38d189523252384bac618c47fb1efab, type: 3}
   - {fileID: 21300000, guid: 96cb9a43d69325c4e906466e34bef046, type: 3}
   - {fileID: 21300000, guid: 6e235bb48bcacb844bb1b0c8fff15e22, type: 3}
-  - {fileID: 21300000, guid: 389fd5052a1836a4883bc03dd5dcd023, type: 3}
   - {fileID: 21300000, guid: d2f59c5cc12f16f4f848d83281e2274f, type: 3}
   - {fileID: 21300000, guid: 85cccbb1388c68c4494f7c5e28127975, type: 3}
   - {fileID: 21300000, guid: 223e9ec63b2b20d4d88eef9cb7089d18, type: 3}
@@ -35,4 +34,4 @@ MonoBehaviour:
   - 2.25
   - 2.25
   - 2.25
-  - 2.25
+  TNTchance: 0

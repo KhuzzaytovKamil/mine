@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c1446ac67932f341b0eb947af1d91d5, type: 3}
+  m_Name: Luck
+  m_EditorClassIdentifier: 
+  ImprovementName: LuckImprovement
+  priceNumber: 4b000000640000001e0000003200000046000000320000001e0000003200000000000000
+  priceType:
+  - stone
+  - stone
+  - ironTreasure
+  - ironTreasure
+  - ironTreasure
+  - diamond
+  - emerald
+  - emerald
+  - max
+  priceSprite:
+  - {fileID: 21300000, guid: 6e235bb48bcacb844bb1b0c8fff15e22, type: 3}
+  - {fileID: 21300000, guid: e0f0792802e3b394784c8b7c436cf860, type: 3}
+  - {fileID: 21300000, guid: c5cb4670944008e468e903f8e79b7a02, type: 3}
+  - {fileID: 21300000, guid: 6fbcfc2d7e1ec644e8f834a0b1fcee49, type: 3}
+  - {fileID: 21300000, guid: a71a1010ee6ab2b4eab240a9678fc4d3, type: 3}
+  goodSprite:
+  - {fileID: 21300000, guid: 0578eb72aed78e641a50cc1fed4410fa, type: 3}
+  - {fileID: 21300000, guid: 4ae8da4824a441f4582a035b431afd3c, type: 3}
+  - {fileID: 21300000, guid: a8c5800f1a1d1d34386e27f21fac7eab, type: 3}
+  - {fileID: 21300000, guid: 4947f945593a662449444eedf78739cc, type: 3}
+  - {fileID: 21300000, guid: 45e6998250e19c74a9675c48634da4a7, type: 3}
+  - {fileID: 21300000, guid: 2f4c129c6848bbc47a53be269b570921, type: 3}
+  - {fileID: 21300000, guid: 0e11951614c12444cbca5d4178e672ba, type: 3}
+  - {fileID: 21300000, guid: a98604763adf9064daa20f0a7b4516f8, type: 3}
+  - {fileID: 21300000, guid: 3e6524316b1156f46a49b4d5e7dc3e02, type: 3}
+  - {fileID: 21300000, guid: 3e6524316b1156f46a49b4d5e7dc3e02, type: 3}
+  power:
+  - 0
+  - 10
+  - 25
+  - 35
+  - 50
+  - 60
+  - 75
+  - 85
+  - 100
