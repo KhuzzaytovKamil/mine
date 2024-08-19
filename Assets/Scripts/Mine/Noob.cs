@@ -295,13 +295,19 @@ public class Noob : MonoBehaviour
                 lowerObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
             lowerObject = null;
         }
-        else if (other.gameObject == leftObject)
+        if (other.gameObject == upperObject)
+        {
+            if (upperObject.GetComponent<Block>() != null)
+                upperObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
+            upperObject = null;
+        }
+        if (other.gameObject == leftObject)
         {
             if (leftObject.GetComponent<Block>() != null)
                 leftObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
             leftObject = null;
         }
-        else if (other.gameObject == rightObject)
+        if (other.gameObject == rightObject)
         {
             if (rightObject.GetComponent<Block>() != null)
                 rightObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
@@ -311,6 +317,27 @@ public class Noob : MonoBehaviour
 
     private void Update()
     {
+        if (!moveDown && lowerObject)
+        {
+            if (lowerObject.GetComponent<Block>() != null)
+                lowerObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
+        }
+        if (!moveUp && upperObject)
+        {
+            if (upperObject.GetComponent<Block>() != null)
+                upperObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
+        }
+        if (!moveLeft && leftObject)
+        {
+            if (leftObject.GetComponent<Block>() != null)
+                leftObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
+        }
+        if (!moveRight && rightObject)
+        {
+            if (rightObject.GetComponent<Block>() != null)
+                rightObject.GetComponent<Block>().blockMiningAudioSource.SetActive(false);
+        }
+
         for (int i = 0; i < 3; i++)
         {
             pickaxes[i].sprite = ImprovementDatas[0].goodSprite[PlayerPrefs.GetInt("PickaxeImprovement")];
@@ -358,40 +385,50 @@ public class Noob : MonoBehaviour
         height = Mathf.RoundToInt(transform.position.y / 2.56f) * (-1) + 1;
         if (height < 0) { height = 0; }
         heightNumber.text = height.ToString();
-
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)))
+        
+        if (restOfFood > 0)
         {
-            moveUp = true;
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)))
+            {
+                moveUp = true;
+            }
+            else if ((Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W)) && moveUp)
+            {
+                moveUp = false;
+            }
+
+            if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && (moveRight == false))
+            {
+                moveRight = true;
+            }
+            else if ((Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D)) && moveRight)
+            {
+                moveRight = false;
+            }
+
+            if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && (moveLeft == false))
+            {
+                moveLeft = true;
+            }
+            else if ((Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A)) && moveLeft)
+            {
+                moveLeft = false;
+            }
+
+            if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && (moveDown == false))
+            {
+                moveDown = true;
+            }
+            else if ((Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)) && moveDown)
+            {
+                moveDown = false;
+            }
         }
-        else if ((Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W)) && moveUp)
+        else
         {
             moveUp = false;
-        }
-
-        if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && (moveRight == false))
-        {
-            moveRight = true;
-        }
-        else if ((Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D)) && moveRight)
-        {
             moveRight = false;
-        }
-
-        if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && (moveLeft == false))
-        {
-            moveLeft = true;
-        }
-        else if ((Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A)) && moveLeft)
-        {
             moveLeft = false;
-        }
-
-        if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && (moveDown == false))
-        {
-            moveDown = true;
-        }
-        else if ((Input.GetKeyUp(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.S)) && moveDown)
-        {
             moveDown = false;
         }
 

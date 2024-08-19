@@ -845,7 +845,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 76.8, y: 23.04}
+  m_Size: {x: 300, y: 23.04}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -975,6 +975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec96a7cb7238ce146ac07a695e143ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioIcon: {fileID: 0}
   SoundOn: {fileID: 0}
   SoundOff: {fileID: 0}
   AudioListener: {fileID: 244844623}
@@ -1173,7 +1174,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 76.8, y: 2.56}
+  m_Size: {x: 300, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1342,9 +1343,9 @@ SceneRoots:
   - {fileID: 80721931}
   - {fileID: 244844625}
   - {fileID: 1013172709}
-  - {fileID: 424463463}
   - {fileID: 2147398764}
   - {fileID: 364183473}
   - {fileID: 2112556084}
+  - {fileID: 424463463}
   - {fileID: 145887508}
   - {fileID: 180133617}

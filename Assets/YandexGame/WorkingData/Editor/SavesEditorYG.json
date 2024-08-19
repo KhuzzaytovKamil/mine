@@ -1,18 +1,18 @@
 {
-  "idSave": 155,
+  "idSave": 163,
   "isFirstSession": false,
   "language": "en",
   "promptDone": false,
-  "stone": 2,
-  "coal": 0,
+  "stone": 0,
+  "coal": 5,
   "iron": 0,
   "ironTreasure": 0,
-  "gold": 0,
+  "gold": 4,
   "goldTreasure": 0,
   "diamond": 0,
   "emerald": 0,
-  "FoodImprovement": 0,
+  "FoodImprovement": 4,
   "LuckImprovement": 0,
-  "PickaxeImprovement": 0,
-  "Blocks": 3628
+  "PickaxeImprovement": 3,
+  "Blocks": 4010
 }
