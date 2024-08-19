@@ -73,11 +73,21 @@ public class Noob : MonoBehaviour
     #region interactionObject
     [Header("interactionObject")]
     [SerializeField]
+    private GameObject upperObject;
+    [SerializeField]
     private GameObject lowerObject;
     [SerializeField]
     private GameObject leftObject;
     [SerializeField]
     private GameObject rightObject;
+
+    private int mineingStatus;
+    private int numberOfTypeOfBrokenBlock;
+
+    private float differenceUp;
+    private float differenceDown;
+    private float differenceRight;
+    private float differenceLeft;
     #endregion
 
     #region MovementData
@@ -93,6 +103,11 @@ public class Noob : MonoBehaviour
     private bool Jump = false;
     private float CurrentRemainingJumpTime;
     private bool loseWasNot = true;
+
+    private bool moveUp;
+    private bool moveDown;
+    private bool moveRight;
+    private bool moveLeft;
     #endregion
 
     #region Extras
@@ -103,17 +118,6 @@ public class Noob : MonoBehaviour
     private ImprovementData[] ImprovementDatas;
     [SerializeField]
     private GoalController GoalController;
-
-    private int mineingStatus;
-    private int numberOfTypeOfBrokenBlock;
-
-    private float differenceDown;
-    private float differenceRight;
-    private float differenceLeft;
-
-    private bool moveDown;
-    private bool moveRight;
-    private bool moveLeft;
 
     [SerializeField]
     private GameObject camera;
@@ -242,9 +246,11 @@ public class Noob : MonoBehaviour
             if (other.gameObject.transform.position.y < transform.position.y)
             {
                 differenceDown = transform.position.y - other.gameObject.transform.position.y;
+                differenceUp = -1;
             }
             else
             {
+                differenceUp = other.gameObject.transform.position.y - transform.position.y;
                 differenceDown = -1;
             }
             if (other.gameObject.transform.position.x < transform.position.x)
@@ -259,15 +265,19 @@ public class Noob : MonoBehaviour
             }
 
 
-            if (Mathf.Max(differenceDown, differenceRight, differenceLeft) == differenceDown)
+            if (Mathf.Max(differenceUp, differenceDown, differenceRight, differenceLeft) == differenceUp)
+            {
+                upperObject = other.gameObject;
+            }
+            else if (Mathf.Max(differenceUp, differenceDown, differenceRight, differenceLeft) == differenceDown)
             {
                 lowerObject = other.gameObject;
             }
-            else if (Mathf.Max(differenceDown, differenceRight, differenceLeft) == differenceLeft)
+            else if (Mathf.Max(differenceUp, differenceDown, differenceRight, differenceLeft) == differenceLeft)
             {
                 leftObject = other.gameObject;
             }
-            else if (Mathf.Max(differenceDown, differenceRight, differenceLeft) == differenceRight)
+            else if (Mathf.Max(differenceUp, differenceDown, differenceRight, differenceLeft) == differenceRight)
             {
                 rightObject = other.gameObject;
             }
@@ -312,6 +322,7 @@ public class Noob : MonoBehaviour
         if (JoystickWas)
         {
             JoystickWas = false;
+            moveUp = false;
             moveRight = false;
             moveLeft = false;
             moveDown = false;
@@ -334,7 +345,7 @@ public class Noob : MonoBehaviour
             {
                 if (Joystick.Vertical > 4)
                 {
-                    Jump = true;
+                    moveUp = true;
                 }
                 else
                 {
@@ -348,9 +359,13 @@ public class Noob : MonoBehaviour
         if (height < 0) { height = 0; }
         heightNumber.text = height.ToString();
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && TouchNow)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)))
         {
-            Jump = true;
+            moveUp = true;
+        }
+        else if ((Input.GetKeyUp(KeyCode.Space) || Input.GetKeyUp(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.W)) && moveUp)
+        {
+            moveUp = false;
         }
 
         if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && (moveRight == false))
@@ -391,16 +406,16 @@ public class Noob : MonoBehaviour
 
         if (Jump)
         {
-        if (CurrentRemainingJumpTime == 0 || CurrentRemainingJumpTime < 0)
-        {
-            CurrentRemainingJumpTime = JumpTime;
-            Jump = false;
-        }
-        else
-        {
-            CurrentRemainingJumpTime -= Time.deltaTime;
-            transform.position += Time.deltaTime * JumpVector * (JumpHeight / JumpTime);
-        }
+            if (CurrentRemainingJumpTime == 0 || CurrentRemainingJumpTime < 0)
+            {
+                CurrentRemainingJumpTime = JumpTime;
+                Jump = false;
+            }
+            else
+            {
+                CurrentRemainingJumpTime -= Time.deltaTime;
+                transform.position += Time.deltaTime * JumpVector * (JumpHeight / JumpTime);
+            }
         }
 
         if (moveDown)
@@ -437,6 +452,17 @@ public class Noob : MonoBehaviour
             else
             {
                 transform.position = transform.position + new Vector3(Time.deltaTime * speed, 0);
+            }
+        }
+        else if (moveUp)
+        {
+            if (upperObject)
+            {
+                mineing(upperObject, "upper");
+            }
+            else if (TouchNow)
+            {
+                Jump = true;
             }
         }
         else

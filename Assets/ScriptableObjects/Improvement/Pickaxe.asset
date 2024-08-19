@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pickaxe
   m_EditorClassIdentifier: 
   ImprovementName: PickaxeImprovement
-  priceNumber: 05000000140000001e0000003c000000500000006400000000000000
+  priceNumber: 0500000014000000140000001e000000320000006400000000000000
   priceType:
   - stone
   - stone

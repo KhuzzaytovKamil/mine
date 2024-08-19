@@ -1,9 +1,9 @@
 {
-  "idSave": 154,
+  "idSave": 155,
   "isFirstSession": false,
   "language": "en",
   "promptDone": false,
-  "stone": 0,
+  "stone": 2,
   "coal": 0,
   "iron": 0,
   "ironTreasure": 0,
@@ -14,5 +14,5 @@
   "FoodImprovement": 0,
   "LuckImprovement": 0,
   "PickaxeImprovement": 0,
-  "Blocks": 3604
+  "Blocks": 3628
 }
